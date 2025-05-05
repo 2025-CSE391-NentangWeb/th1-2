@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HR Management</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* HEADER */
+    .navbar {
+      background-color: #1e1e1e;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .navbar nav a {
+      color: #fff;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    .navbar .search {
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar input {
+      padding: 5px;
+      border: none;
+      border-radius: 3px;
+    }
+
+    .navbar button {
+      margin-left: 5px;
+      padding: 5px 10px;
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* CONTENT */
+    .container {
+      padding: 20px;
+    }
+
+    .container h2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .container table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    table th, table td {
+      padding: 10px;
+      border: 1px solid #ccc;
+      text-align: left;
+    }
+
+    .btn {
+      padding: 5px 10px;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .btn-add {
+      background: #007bff;
+      border-radius: 4px;
+    }
+
+    .btn-edit {
+      background: #ffc107;
+    }
+
+    .btn-delete {
+      background: #dc3545;
+    }
+
+    /* MODAL FORM */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.4);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      width: 500px;
+      position: relative;
+    }
+
+    .modal-content h3 {
+      margin-top: 0;
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .form-group {
+      margin-bottom: 10px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .form-group input, 
+    .form-group select {
+      width: 100%;
+      padding: 7px;
+      box-sizing: border-box;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-actions {
+      text-align: right;
+      margin-top: 15px;
+    }
+
+    .form-actions button {
+      padding: 7px 15px;
+      margin-left: 5px;
+    }
+
+    /* Show modal */
+    #modalToggle:checked ~ .modal {
+      display: flex;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Modal Toggle (hidden checkbox) -->
+  <input type="checkbox" id="modalToggle" hidden>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1>HR Management</h1>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="search">
+      <input type="text" placeholder="Search...">
+      <button>Search</button>
+    </div>
+  </div>
+
+  <!-- Table Section -->
+  <div class="container">
+    <h2>
+      Employee
+      <label for="modalToggle" class="btn btn-add">+ Add</label>
+    </h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>Position</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td><td>Fatima Beatriz</td><td>Fatima.Beatriz@gmail.com</td><td>0985674321</td><td>Staff</td>
+          <td><button class="btn btn-edit">Edit</button> <button class="btn btn-delete">Delete</button></td>
+        </tr>
+        <tr>
+          <td>2</td><td>Gabriel Hanna</td><td>Gabriel.Hanna@gmail.com</td><td>0353674231</td><td>Staff</td>
+          <td><button class="btn btn-edit">Edit</button> <button class="btn btn-delete">Delete</button></td>
+        </tr>
+        <tr>
+          <td>3</td><td>Charles Diya</td><td>Charles.Diya@gmail.com</td><td>0347658833</td><td>Staff</td>
+          <td><button class="btn btn-edit">Edit</button> <button class="btn btn-delete">Delete</button></td>
+        </tr>
+        <tr>
+          <td>4</td><td>Frank Lamdo</td><td>Frank.Lamdo@gmail.com</td><td>0975444768</td><td>Manager</td>
+          <td><button class="btn btn-edit">Edit</button> <button class="btn btn-delete">Delete</button></td>
+        </tr>
+        <tr>
+          <td>5</td><td>Louis Tom</td><td>Louis.Tom@gmail.com</td><td>0789568223</td><td>Staff</td>
+          <td><button class="btn btn-edit">Edit</button> <button class="btn btn-delete">Delete</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Modal Form -->
+  <div class="modal">
+    <div class="modal-content">
+      <label for="modalToggle" class="close">&times;</label>
+      <h3>New Employee</h3>
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email">
+      </div>
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="text">
+      </div>
+      <div class="form-group">
+        <label>Position</label>
+        <select>
+          <option>-- Select Position --</option>
+          <option>Staff</option>
+          <option>Manager</option>
+          <option>CEO</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Sex</label>
+        <div class="radio-group">
+          <label><input type="radio" name="sex"> Male</label>
+          <label><input type="radio" name="sex"> Female</label>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-add">Save</button>
+        <label for="modalToggle" class="btn btn-delete">Cancel</label>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
